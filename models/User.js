@@ -15,7 +15,8 @@ const UserSchema = new mongoose.Schema({
 	password:{
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		default: '1234567'
 	},
 	postCreated:{
 		type: Array,
