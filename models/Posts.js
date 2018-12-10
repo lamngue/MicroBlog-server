@@ -24,6 +24,11 @@ const PostSchema = new mongoose.Schema({
 	createdAt:{
 		type: String,
 		required: true
+	},
+	location: {
+		type: String,
+		trim: true,
+		required: true
 	}
 });
 const Posts = mongoose.model('Posts',PostSchema);

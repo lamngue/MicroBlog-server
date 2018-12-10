@@ -12,14 +12,15 @@ module.exports = (server) => {
 		});
 	});
 	server.post('/posts',(req,res,next) => {
-		const {username,title,categories,content} = req.body;
+		const {username,title,categories,content,location} = req.body;
 		//make a new post 
 		const post = new Posts({
 			username,
 			title,
 			categories,
 			content,
-			createdAt: `${new Date().toDateString()}  ${new Date().toLocaleTimeString('en-US')}`
+			createdAt: `${new Date().toDateString()}  ${new Date().toLocaleTimeString('en-US')}`,
+			location
 		});
 		return post.save()
 		    .then((doc) => User.findOneAndUpdate({username}, {$push: {'postCreated': doc}})
