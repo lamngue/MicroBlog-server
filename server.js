@@ -7,7 +7,7 @@ const server = restify.createServer();
 
 //Middleware
 const cors = corsMiddleware({
-  origins: ['*'],
+  origins: ['http://localhost:3000','https://miniblog123.herokuapp.com'],
   allowHeaders: ['*'],
   exposeHeaders: ['API-Token-Expiry']
 });
