@@ -32,11 +32,38 @@ module.exports = (server) => {
 		        return next(new errors.BadRequestError(e.message));
 		    });
 	});
+	//like a post
+	server.put('/likePost',(req,res,next) => {
+		const {username,postId} = req.body;
+		Posts.findByIdAndUpdate(postId, {$push: {'likedBy': username}},{new: true})
+		.then((post) => {
+			console.log(post);
+			res.send(post);
+			next();
+		})
+		.catch((e) => {
+		    return next(new errors.BadRequestError(e.message));
+		});
+	});
+	//
+	server.put('/unlikePost',(req,res,next) => {
+		const {username,postId} = req.body;
+		Posts.findByIdAndUpdate(postId, {$pull: {'likedBy': username}},{new: true})
+		.then((post) => {
+			console.log(post);
+			res.send(post);
+			next();
+		})
+		.catch((e) => {
+		    return next(new errors.BadRequestError(e.message));
+		});
+	});
+	//view a post
 	server.get('/posts/:id',(req,res,next) => {
 		const {id} = req.params;
 		Posts.findById(id).then((post) => {
 			if(!post){
-				return next(new errors.NotFoundError(error.message));
+				return next(new errors.NotFoundError("Can't find post"));
 			}
 			res.send(post);
 		})
@@ -44,6 +71,7 @@ module.exports = (server) => {
 			return next(new errors.BadRequestError(e.message));
 		});
 	});
+	//delete a post
 	server.del('/posts',(req,res,next)=>{
 		const {id,username} = req.body;
 		User.findOne({username}).then(user => {

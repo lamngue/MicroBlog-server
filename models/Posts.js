@@ -29,6 +29,10 @@ const PostSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 		required: true
+	},
+	likedBy: {
+		type: Array,
+		default: []
 	}
 });
 const Posts = mongoose.model('Posts',PostSchema);
