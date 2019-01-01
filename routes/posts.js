@@ -37,7 +37,6 @@ module.exports = (server) => {
 		const {username,postId} = req.body;
 		Posts.findByIdAndUpdate(postId, {$push: {'likedBy': username}},{new: true})
 		.then((post) => {
-			console.log(post);
 			res.send(post);
 			next();
 		})
@@ -50,7 +49,6 @@ module.exports = (server) => {
 		const {username,postId} = req.body;
 		Posts.findByIdAndUpdate(postId, {$pull: {'likedBy': username}},{new: true})
 		.then((post) => {
-			console.log(post);
 			res.send(post);
 			next();
 		})
