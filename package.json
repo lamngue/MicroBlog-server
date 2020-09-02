@@ -17,7 +17,7 @@
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "googleapis": "^35.0.0",
+    "googleapis": "^39.1.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.7.12",
     "mongoose-timestamp": "^0.6.0",
